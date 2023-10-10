@@ -40,7 +40,7 @@ const isValidFields = () => {
     return document.getElementById('form').reportValidity()
 }
 
-//Interação com o layout
+//INTERAÇÃO COM O LAYOUT
 
 const clearFields = () => {
     const fields = document.querySelectorAll('.modal-field')
