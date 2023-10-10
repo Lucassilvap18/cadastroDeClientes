@@ -137,14 +137,14 @@ const editDelete = (event) => {
 
 updateTable()
 
-// Eventos
+// EVENTOS
 document.getElementById('cadastrarCliente')
     .addEventListener('click', openModal)
 
 document.getElementById('modalClose')
     .addEventListener('click', closeModal)
 
-// modal apagar
+// MODAL APAGAR
 document.getElementById('modalClose2')
     .addEventListener('click', closeModal2)
 
