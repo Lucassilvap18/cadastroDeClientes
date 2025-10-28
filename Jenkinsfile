@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage ('Build Docker image') {
             steps {
-                sh 'echo "Executando o comando de Docker build"'
+                dockerapp = docker.Build("lucassilva/guia-jenkins:$(env.BUILD_ID)")
             }
         }
 
