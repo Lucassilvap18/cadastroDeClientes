@@ -1,11 +1,13 @@
 pipeline {
     agent any
 
+    def dockerapp  // Declaração global da variável para compartilhar entre stages
+
     stages {
         stage('Build Docker image') {
             steps {
                 script {
-                    def dockerapp = docker.build("lucasdev18/guia-jenkins:${env.BUILD_ID}", ".")
+                    dockerapp = docker.build("lucasdev18/guia-jenkins:${env.BUILD_ID}", ".")
                     // Cria a pasta dist com os arquivos estáticos para o deploy via SCP
                     sh """
                         mkdir -p dist
