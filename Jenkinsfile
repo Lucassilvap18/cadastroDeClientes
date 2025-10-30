@@ -25,8 +25,7 @@ pipeline {
                         dockerapp.push('latest')
                         dockerapp.push("${env.BUILD_ID}")
                     }
-                    // Opcional: Remove a imagem local para limpar espaço
-                    dockerapp.remove()
+                    // Removido o remove() para evitar erro de segurança; limpe manualmente se precisar
                 }
             }
         }
