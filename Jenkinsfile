@@ -5,7 +5,12 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script {
-                    dockerapp = docker.build("lucasdev18/guia-jenkins:${env.BUILD_ID}", ".")
+                    def dockerapp = docker.build("lucasdev18/guia-jenkins:${env.BUILD_ID}", ".")
+                    // Cria a pasta dist com os arquivos estáticos para o deploy via SCP
+                    sh """
+                        mkdir -p dist
+                        cp index.html dist/  # Ajuste se houver mais arquivos (ex.: *.js *.css)
+                    """
                 }
             }
         }
@@ -21,7 +26,7 @@ pipeline {
             }
         }
 
-        stage('Deploy na VM') {  // Renomeei para clareza, já que não é K8s
+        stage('Deploy na VM') {
             steps {
                 withCredentials([sshUserPrivateKey(credentialsId: 'deploy-jenkins', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
                     sh """
