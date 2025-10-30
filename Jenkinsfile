@@ -23,9 +23,15 @@ pipeline {
 
         stage('Deploy no Kubernetes') {
             steps {
-                echo "Executando o comando kubectl apply"
-            }
+                withCredentials([sshUserPrivateKey(credentialsId: 'deploy-jenkins', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
+                    sh """
+                     # Copia os arquivos da aplicação para o diretório do Nginx na VM
+                    scp -i \$SSH_KEY -o StrictHostKeyChecking=no -r ./dist/ \$SSH_USER@13.220.118.240:/var/www/html/
+                
+                     # Reinicia o Nginx na VM para aplicar as mudanças
+                    ssh -i \$SSH_KEY -o StrictHostKeyChecking=no \$SSH_USER@13.220.118.240 'sudo systemctl reload nginx'
+            """
         }
+        echo "Deploy realizado na VM com Nginx na porta 80"
     }
 }
-
