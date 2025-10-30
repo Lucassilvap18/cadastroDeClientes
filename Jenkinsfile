@@ -1,6 +1,6 @@
 pipeline {
     agent any
-    
+
     stages {
         stage('Build Docker image') {
             steps {
@@ -12,16 +12,20 @@ pipeline {
 
         stage('Push Docker image') {
             steps {
-                sh 'echo "Executando o comando de Docker push"'
+                echo "Executando o comando de Docker push"
+                // Exemplo:
+                // sh 'docker login -u $DOCKER_USER -p $DOCKER_PASS'
+                // sh "docker push lucassilva/guia-jenkins:${env.BUILD_ID}"
             }
         }
 
         stage('Deploy no Kubernetes') {
             steps {
-                sh 'echo "Executando o comando kubectl apply"'
+                echo "Executando o comando kubectl apply"
+                // Exemplo:
+                // sh 'kubectl apply -f k8s/deployment.yaml'
             }
         }
     }
 }
 
-}
