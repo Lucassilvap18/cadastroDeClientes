@@ -35,7 +35,7 @@ pipeline {
                 withCredentials([sshUserPrivateKey(credentialsId: 'deploy-jenkins', keyFileVariable: 'SSH_KEY', usernameVariable: 'SSH_USER')]) {
                     sh """
                         # Copia os arquivos da aplicação para o diretório do Nginx na VM
-                        scp -i \$SSH_KEY -o StrictHostKeyChecking=no -r ./dist/ \$SSH_USER@13.220.118.240:/var/www/html/
+                        scp -i \$SSH_KEY -o StrictHostKeyChecking=no -r ./dist/ \$SSH_USER@13.220.118.240:/usr/share/nginx/html/
                         
                         # Reinicia o Nginx na VM para aplicar as mudanças
                         ssh -i \$SSH_KEY -o StrictHostKeyChecking=no \$SSH_USER@13.220.118.240 'sudo systemctl reload nginx'
