@@ -5,7 +5,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 script {
-                    dockerapp = docker.build("lucassilva/guia-jenkins:${env.BUILD_ID}", "Lucassilvap18/cadastroDeClientes")
+                    dockerapp = docker.build("lucassilva/guia-jenkins:${env.BUILD_ID}", ".")
                 }
             }
         }
@@ -22,4 +22,6 @@ pipeline {
             }
         }
     }
+}
+
 }
