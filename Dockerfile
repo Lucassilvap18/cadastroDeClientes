@@ -2,7 +2,7 @@ FROM nginx:latest
 
 RUN rm -rf /usr/share/nginx/html/*
 
-COPY cadastroDeClientes/html /usr/share/nginx/html
+COPY cadastroDeClientes/ /usr/share/nginx/html
 
 
 EXPOSE 80
