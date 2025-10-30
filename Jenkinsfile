@@ -4,9 +4,12 @@ pipeline {
     stages {
         stage ('Build Docker image') {
             steps {
-                sh 'echo "executando build em imagem docker" '
+                script {
+                    dockerapp = docker.build("lucassilva/gui-jenkins:${env.BUILD_ID}", '-f src/Dockerfile") 
+                }
             }
         }
+                                        
 
         stage ('Push Docker image') {
             steps {
