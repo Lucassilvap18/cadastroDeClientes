@@ -32,6 +32,6 @@ pipeline {
 
         stage('Deploy na VM') {
             steps {
-                echo "Deploy realizado na VM com Nginx na porta 80"
+                'echo "Deploy realizado na VM com Nginx na porta 80"'
             }
         }
