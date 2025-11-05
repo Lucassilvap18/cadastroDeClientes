@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     docker.build("lucasdev18/guia-jenkins:${env.BUILD_ID}", ".")
-                }
+                } 
 
                 sh """
                     mkdir -p dist
@@ -31,7 +31,7 @@ pipeline {
             steps {
                 echo "Deploy realizado na VM com Nginx na porta 80"
 
-                
+
             }
         }
     }
